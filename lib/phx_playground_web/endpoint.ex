@@ -47,5 +47,17 @@ defmodule PhxPlaygroundWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+
+  plug :introspect
   plug PhxPlaygroundWeb.Router
+
+  def introspect(conn, _opts) do
+    IO.puts"""
+    Verb: #{inspect(conn.method)}
+    Path: #{inspect(conn.request_path)}
+    Headers: #{inspect(conn.req_headers)}
+    """
+
+    conn
+  end
 end
