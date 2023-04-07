@@ -19,14 +19,17 @@ defmodule PhxPlaygroundWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    resources "/users", UserController
     get "hello", HelloController, :index
     get "hello/:messenger", HelloController, :show
+    resources "/products", ProductController
   end
 
   # Other scopes may use custom stacks.
   # scope "/api", PhxPlaygroundWeb do
   #   pipe_through :api
   # end
+
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:phx_playground, :dev_routes) do
